@@ -3,22 +3,49 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
   }
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  
+  /* Hide the scrollbar for WebKit-based browsers */
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px; /* Also hides the horizontal scrollbar */
+  }
+
+  /* For Firefox */
+  scrollbar-width: none; /* Hides the scrollbar for Firefox */
 }
+
+/* For other elements that might need the scrollbar hidden */
+* {
+  scrollbar-width: none; /* For Firefox */
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px; /* Also hides the horizontal scrollbar */
+}
+
+
 
 @layer utilities {
   .text-balance {
